@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using CSharkLibrary;
+using System.IO;
 
 namespace CSharkServer
 {
@@ -52,6 +53,27 @@ namespace CSharkServer
                 if (otherConnection == connection)
                     continue;
                 otherConnection.ReceiveMessage(user.Username, message);
+            }
+        }
+
+        public void UploadFile(CSharkFile file)
+        {
+            string path = System.Environment.CurrentDirectory;
+            Console.WriteLine("FileName: {0}", file.Filename);
+
+            ICSharkClient connection = OperationContext.Current.GetCallbackChannel<ICSharkClient>();
+            User user;
+
+            if (!_users.TryGetValue(connection, out user))
+                return;
+
+            file.Username = user.Username;
+
+            foreach (ICSharkClient otherConnection in _users.Keys)
+            {
+                if (otherConnection == connection)
+                    continue;
+                otherConnection.DownloadFile(file);
             }
         }
     }
