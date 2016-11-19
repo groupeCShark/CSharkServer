@@ -13,10 +13,12 @@ namespace CSharkServer
             host.Open();
 
             Console.WriteLine("Server CShark is running...");
-            Console.WriteLine("Press any Key to exit...");
-            Console.ReadKey();
-
-            host.Close();
+            Console.WriteLine("Enter a command - enter help for command list");
+            while (true)
+            {
+                Parser.parse(Console.ReadLine(),csharkService);
+            }
+            //host.Close();
         }
     }
 }
