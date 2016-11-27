@@ -9,13 +9,19 @@ Le projet est constitué de 3 sous-projets :
 - **CSharkClient** qui est le code *WPF* implémentant la partie cliente
 - **CSharkServer** qui implémente la partie serveur en *WCF*
 
+### Liens
+
+- CSharkLibrary : https://github.com/groupeCShark/CSharkLibrary
+- CSharkClient : https://github.com/groupeCShark/Client
+- CSharkServer : https://github.com/groupeCShark/CSharkServer
+
 ### Compilation
 
 Pour compiler le serveur et le client, il est nécessaire d'inclure la librairie commune CSharkLibrary :
 
-1. File -> Add -> Existing Project
+1. `File -> Add -> Existing Project`
 2. Sélectionner le fichier .csproj de la libraire CSharkLibrary
-3. Dans le panneau Solution Explorer à droite, Clic droit -> Add references -> Projects -> Solution
+3. Dans le panneau Solution Explorer à droite, `Clic droit -> Add references -> Projects -> Solution`
 4. Cocher CSharkLibrary
 
 NB : Il est possible qu'il soit nécessaire de supprimer une référence à *CSharkLibrary* déjà existante.
@@ -51,3 +57,9 @@ Le pseudo par défaut est "Anonymous". Il peut être changé dans le fichier config
 L'utilisation du serveur reste également très simple. Une fois lancé, la commande `help` affiche l'ensemble des commandes supportés.
 
 Par exemple, la commande `userlist` affiche la liste des utilisateurs actuellement connectés.
+
+
+### Références
+
+- L'article [A WCF Tutorial](http://blog.the-blair.com/2010/04/02/wcf-tutorial.html) par Blair Kitchen nous a beaucoup aidé à écrire la partie WCF du projet.
+- La section [Créer une application Windows avec WPF](https://openclassrooms.com/courses/les-differents-types-d-applications-pouvant-etre-developpees-avec-le-c) du tutoriel d'OpenClassroom par Nicolas Hilaire nous a permis de nous familiariser avec WPF.
