@@ -12,6 +12,7 @@ Le projet est constitué de 3 sous-projets :
 ### Compilation
 
 Pour compiler le serveur et le client, il est nécessaire d'inclure la librairie commune CSharkLibrary :
+
 1. File -> Add -> Existing Project
 2. Sélectionner le fichier .csproj de la libraire CSharkLibrary
 3. Dans le panneau Solution Explorer à droite, Clic droit -> Add references -> Projects -> Solution
@@ -27,9 +28,26 @@ Une fois le serveur et le client compilés, il faut se rendre de le répertoire bi
 
 1. Lancer le fichier **CSharkServer.exe**. Une console Windows devrait alors se lancer.
 
-![CSharkServer Start](https://github.com/groupeCShark/CSharkServer/tree/dev/images/CSharkServerStart.png "CSharkServer Start")
+![CSharkServer Start](/images/CSharkServerStart.png?raw=true "CSharkServer Start")
 
 2. Lancer autant de clients **CSharkClient.exe** que nécessaire. Une fenêtre de *chat* devrait alors se lancer et la connexion au serveur devrait réussir.
 
-![CSharkClient Start](https://github.com/groupeCShark/CSharkServer/tree/dev/images/CSharkClientStart.png "CSharkClient Start")
+![CSharkClient Start](/images/CSharkClientStart.png?raw=true "CSharkClient Start")
 
+
+### Utilisation
+
+##### Client
+
+L'interface cliente est plutôt simple et intuitive.
+
+L'envoie de fichiers se fait en cliquant sur le bouton File. Les fichiers envoyés se retrouvent dans un répertoire /download dans le dossier de lancement de l'application.
+
+Le pseudo par défaut est "Anonymous". Il peut être changé dans le fichier config.xml. Un redémarrage est alors nécessaire pour prendre en compte les modifications. La commande `!username <Votre Nouveau Pseudo>` permet également de modifier le pseudo tout en utilisant l'application.
+
+
+##### Serveur
+
+L'utilisation du serveur reste également très simple. Une fois lancé, la commande `help` affiche l'ensemble des commandes supportés.
+
+Par exemple, la commande `userlist` affiche la liste des utilisateurs actuellement connectés.
