@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,13 +21,40 @@ namespace CSharkServer
         {
             using (System.IO.StreamReader file = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory + "log/logs.txt", true))
             {
-                for (int i = 1; i <= index; i++)
+                
+                List<string> logList =  new List<string>();
+                string line = file.ReadLine();
+                while (line!=null)
                 {
-                    
-                    Console.WriteLine(file.ReadLine());
+                    logList.Add(line);
+                    line =file.ReadLine();
+                }
+                int lastLog = logList.Count;
+                Console.WriteLine(lastLog);
+                for (int i = Math.Min(index,lastLog); i >= 1; i--)
+                {
+                    Console.WriteLine(logList[lastLog - i]);
                 }
             }
                 return true;
+        }
+        public static void CheckLogDirectory()
+        {
+            try
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory + "log";
+                if(Directory.Exists(path))
+                { return; }
+                else
+                {
+                    Directory.CreateDirectory(path);
+                    Console.WriteLine("log directory successfully created at {0}.", Directory.GetCreationTime(path));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("failed to check log directory existence: {0}", e.ToString());
+            }
         }
     }
 }

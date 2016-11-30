@@ -14,10 +14,15 @@ namespace CSharkServer
             int commandEndIndex = input.IndexOf(' ');
             string command = String.Empty;
             string commandArg = String.Empty;
+            int args = 0;
             if (commandEndIndex>-1)
             {
                 command = input.Substring(0, commandEndIndex);
                 commandArg = input.Substring(commandEndIndex + 1, input.Length - commandEndIndex - 1); //CommandArg est un string, il faut le convertir en int
+                bool parsed = Int32.TryParse(commandArg, out args);
+
+                if (!parsed)
+                    Console.WriteLine("'{0}' could not be parsed to an int.\n", commandArg);
             }
             else
             {
@@ -32,9 +37,10 @@ namespace CSharkServer
                             Environment.Exit(0);
                             break;
                         }
-                        catch
+                        catch (Exception e)
                         {
                             Console.WriteLine("Failed exit. Sorry.");
+                            Console.WriteLine(e.ToString());
                             Console.WriteLine();
                             break;                      
                         }
@@ -47,6 +53,17 @@ namespace CSharkServer
                         Console.WriteLine("logs X : displays the X last log line");
                         Console.WriteLine("userlist : displays a list of users");
                         Console.WriteLine();
+                        break;
+                    }
+                case "logs":
+                    try
+                    {
+                        LogManager.ReadLogMessage(args); //TODO: convertir commandArg en int
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
                         break;
                     }
                 case "userlist":
@@ -68,9 +85,9 @@ namespace CSharkServer
                             
                             break;
                         }
-                        catch
+                        catch (Exception e)
                         {
-
+                            Console.WriteLine(e.ToString());
                             break;
                         }
                     }
